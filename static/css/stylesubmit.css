@@ -1,0 +1,296 @@
+:root {
+  --bg-main: #f5f3ff; /* خلفية فاتحة بنفسجية */
+  --bg-soft: rgba(255, 255, 255, 0.75);
+  --card-bg: rgba(255, 255, 255, 0.95);
+
+  --accent-1: #7b3fe4; /* بنفسجي أساسي */
+  --accent-2: #a66cff; /* بنفسجي فاتح للتدرج */
+
+  --text: #2d2d2d; /* نص غامق */
+  --muted: #7a8394;
+  --border: rgba(0, 0, 0, 0.08);
+  --shadow: 0 10px 25px rgba(123, 63, 228, 0.08);
+
+  --radius: 18px;
+}
+
+/* Reset / Base */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family:
+    "Cairo",
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
+
+  background:
+  white;
+  color: var(--text);
+  direction: rtl;
+  line-height: 1.6;
+  padding: 40px 20px;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 28px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.02),
+    rgba(255, 255, 255, 0.01)
+  );
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(6px) saturate(120%);
+}
+.main-header {
+  width: 100%;
+  height: 70px;
+  padding: 0 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #462379;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 1000;
+}
+
+/* عشان ما يغطي الهيدر المحتوى */
+body {
+  padding-top: 90px;
+}
+
+/* اللوقو */
+.logo-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-icon {
+  font-size: 26px;
+  color: #ecd9f5;
+}
+
+.logo-text {
+  font-size: 20px;
+  font-weight: 800;
+  color: white;
+}
+
+.ai-text {
+  color: #ffffff;
+}
+
+/* الناف */
+.nav-tabs {
+  display: flex;
+  gap: 10px;
+}
+
+.nav-tab {
+  text-decoration: none;
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  color: white;
+  background: rgba(255, 255, 255, 0.1);
+  transition: 0.3s;
+}
+
+.nav-tab:hover {
+  opacity: 0.8;
+}
+
+.nav-tab:first-child {
+  color: white;
+  text-decoration: none;
+  font-size: 0.9rem;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 6px 14px;
+  border-radius: 8px;
+}
+
+.nav-tab:hover {
+  background: #ffffff;
+  color: #000;
+}
+
+/* Header */
+.form-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  margin-top: 4rem;
+}
+
+.form-header h2 {
+  font-size: 2rem;
+  background: linear-gradient(90deg, var(--accent-2), var(--accent-1));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  display: inline-block;
+  margin: 0 0 0.5rem;
+}
+
+.form-header p {
+  color: var(--muted);
+  margin: 0;
+  color: #462379;
+}
+
+/* Form card */
+.styled-form {
+  background: var(--card-bg);
+  backdrop-filter: blur(var(--glass-blur)) saturate(120%);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius);
+  padding: 2rem;
+  box-shadow: var(--shadow);
+}
+
+/* Grid layout for form fields */
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group.full-width {
+  grid-column: span 2;
+}
+
+/* Labels & controls */
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: var(--accent-2);
+  
+}
+
+.form-control {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: rgba(69, 67, 67, 0.3);
+  border: 1px solid var(--glass-border);
+  border-radius: calc(var(--radius) - 2px);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+.form-control:focus {
+  outline: none;
+  border-color: var(--accent-1);
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.2);
+}
+
+/* Select and textarea */
+select.form-control option {
+  background: #ffffff;
+  color: var(--text);
+}
+
+textarea.form-control {
+  min-height: 100px;
+  resize: vertical;
+}
+
+/* Checkboxes */
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.checkbox-group label {
+  margin: 0;
+}
+
+.form-check {
+  width: 20px;
+  height: 20px;
+  accent-color: var(--accent-1);
+}
+
+/* Separator */
+.separator {
+  border: none;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--glass-border),
+    transparent
+  );
+  margin: 2rem 0;
+}
+
+/* Submit button */
+.btn-submit {
+  background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
+  color: #fff;
+  border: none;
+  padding: 0.75rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  border-radius: calc(var(--radius) - 2px);
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(6, 182, 212, 0.2);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+  width: 100%;
+}
+
+.btn-submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(157, 6, 212, 0.3);
+}
+
+/* Submit area spacing */
+.submit-area {
+  margin-top: 2rem;
+}
+
+/* Focus outline */
+:focus {
+  outline: 3px solid rgba(6, 182, 212, 0.12);
+  outline-offset: 4px;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  body {
+    padding: 20px 10px;
+  }
+
+  .container {
+    padding: 20px;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-header h2 {
+    font-size: 1.6rem;
+  }
+}

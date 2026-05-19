@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+<meta charset="UTF-8">
+<title>Supervisor Dashboard</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/stylesupervisor.css') }}">
+</head>
+
+<body>
+
+<!-- زر المنيو -->
+<button id="menuBtn" class="menu-btn">☰</button>
+
+<!-- السايدبار -->
+<div id="sidebar" class="sidebar">
+
+<h3>لوحة التحكم</h3>
+
+<a href="#" id="showAllBtn">
+إجمالي الطلبات ({{ total }})
+</a>
+
+<a href="#" id="pendingBtn">
+قيد الانتظار ({{ pending }})
+</a>
+<a href="#" id="reportsBtn">
+التقارير
+</a>
+<a href="{{ url_for('index') }}">
+تسجيل الخروج
+</a>
+
+</div>
+
+<!-- overlay -->
+<div id="overlay" class="overlay"></div>
+
+<!-- المحتوى كامل -->
+<div class="dashboard">
+
+    <!-- topbar -->
+    <div class="topbar">
+        <div class="welcome">
+            <h2>مرحباً {{ session['supervisor_name'] }}</h2>
+            <p>لوحة تحكم المشرف العام</p>
+        </div>
+    </div>
+
+    <!-- cards -->
+    <div class="cards">
+
+        <div class="card" id="totalCard">
+            <h3>إجمالي الطلبات</h3>
+            <span>{{ total }}</span>
+        </div>
+
+        <div class="card" id="pendingCard">
+            <h3>قيد الانتظار</h3>
+            <span>{{ pending }}</span>
+        </div>
+
+    </div>
+
+<div class="table-box" id="applicationsSection">
+
+        <table>
+
+            <thead>
+                <tr>
+                    <th>الاسم</th>
+                    <th>الإيميل</th>
+                    <th>الجوال</th>
+                    <th>الجهة</th>
+                    <th>الدور</th>
+                    <th>الحالة</th>
+                    <th>الإجراء</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% for app in applications %}
+                <tr class="data-row" data-status="{{ app[6] }}">
+
+                    <td>{{ app[1] }}</td>
+                    <td>{{ app[2] }}</td>
+                    <td>{{ app[3] }}</td>
+                    <td>{{ app[4] }}</td>
+                    <td>{{ app[5] }}</td>
+                    <td>{{ app[6] }}</td>
+
+                    <td>
+
+                        <a href="{{ url_for('update_status', app_id=app[0], new_status='Accepted') }}">
+                            <button class="accept">قبول</button>
+                        </a>
+
+                        <a href="{{ url_for('update_status', app_id=app[0], new_status='Rejected') }}">
+                            <button class="reject">رفض</button>
+                        </a>
+
+                    </td>
+
+                </tr>
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div><div id="reportsSection" style="display:none;">
+
+<h2>تقارير التحليل</h2>
+
+{% for report in reports %}
+<div class="report-card">
+    <p>المرسل: {{ report[1] }}</p>
+    <p>التاريخ: {{ report[2] }}</p>
+
+    <a href="{{ url_for('view_report', report_id=report[0]) }}" target="_blank">
+        فتح التقرير PDF
+    </a>
+</div>
+{% endfor %}
+
+</div>
+<script src="{{ url_for('static', filename='js/jssupervisor.js') }}"></script>
+
+</body>
+</html>

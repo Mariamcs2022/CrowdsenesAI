@@ -1,0 +1,357 @@
+:root {
+  --bg-main: #f5f3ff; /* خلفية فاتحة بنفسجية */
+  --bg-soft: rgba(255, 255, 255, 0.75);
+  --card-bg: rgba(255, 255, 255, 0.95);
+
+  --accent-1: #7b3fe4; /* بنفسجي أساسي */
+  --accent-2: #a66cff; /* بنفسجي فاتح للتدرج */
+
+  --text: #2d2d2d; /* نص غامق */
+  --muted: #7a8394;
+  --border: rgba(0, 0, 0, 0.08);
+  --shadow: 0 10px 25px rgba(123, 63, 228, 0.08);
+
+  --radius: 18px;
+}
+
+/* ===== Reset ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body,
+.dashboard,
+.topbar {
+  transform: none !important;
+}
+body {
+  font-family: "Cairo", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  direction: rtl;
+  padding: 35px 20px;
+  min-height: 100vh;
+
+  background:
+    radial-gradient(
+      circle at 20% 20%,
+      rgba(123, 63, 228, 0.08),
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at 80% 80%,
+      rgba(166, 108, 255, 0.07),
+      transparent 35%
+    ),
+    var(--bg-main);
+  color: var(--text);
+}
+
+.dashboard {
+  max-width: 1400px;
+  margin: auto;
+  background: white;
+}
+
+/* ===== Topbar ===== */
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 25px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  box-shadow: var(--shadow);
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+.welcome h2 {
+  font-size: 28px;
+  font-weight: 800;
+}
+
+.welcome p {
+  font-size: 15px;
+  color: var(--muted);
+}
+
+/* ===== Cards ===== */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 25px;
+  margin-bottom: 30px;
+}
+
+.card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 35px;
+  text-align: center;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(8px);
+  cursor: pointer;
+  transition: 0.2s ease;
+  box-shadow: 0 0 25px rgba(124, 58, 237, 0.08);
+}
+
+.card:hover {
+  transform: translateY(-3px);
+}
+
+.card h3 {
+  font-size: 22px;
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+
+.card span {
+  font-size: 42px;
+}
+
+/* ===== Table ===== */
+.table-box {
+  background: white;
+
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 15px;
+  overflow-x: auto;
+  box-shadow: var(--shadow);
+  border-radius: 24px;
+  padding: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 900px;
+}
+
+th {
+  padding: 18px;
+  font-size: 18px;
+  font-weight: 800;
+  color: #8b5cf6;
+  border-bottom: 1px solid var(--border);
+}
+
+td {
+  padding: 18px;
+  text-align: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  font-size: 15px;
+}
+
+tr:hover {
+  background: rgba(255, 255, 255, 0.03);
+  transform: scale(1.005);
+}
+
+/* ===== Buttons ===== */
+.accept,
+.reject {
+  border: none;
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-family: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  margin: 2px;
+  transition: 0.3s;
+}
+
+.accept {
+  background: rgba(34, 197, 94, 0.15);
+  color: #4ade80;
+}
+
+.reject {
+  background: rgba(239, 68, 68, 0.15);
+  color: #f87171;
+}
+
+.accept:hover,
+.reject:hover {
+  transform: translateY(-2px);
+}
+
+/* ===== Menu Button (نفس حق المنظم) ===== */
+.menu-btn {
+  position: fixed;
+  top: 70px;
+  left: 80px;
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 52px;
+  height: 52px;
+
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  background: rgba(31, 1, 57, 0.84);
+  color: #ffffff;
+
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1;
+
+  cursor: pointer;
+  outline: none;
+
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  transition: all 0.25s ease;
+}
+
+.menu-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 35px rgba(124, 58, 237, 0.25);
+}
+
+.menu-btn:active {
+  transform: scale(0.96);
+}
+
+.menu-btn.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+/* ===== Sidebar ===== */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -280px;
+  width: 260px;
+  height: 100%;
+  background: rgba(31, 1, 57, 0.84);
+
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  transition: 0.3s ease;
+  z-index: 1500;
+}
+
+.sidebar.active {
+  left: 0;
+}
+
+.sidebar h3 {
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.sidebar a {
+  color: #fff;
+  text-decoration: none;
+  padding: 10px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.03);
+  transition: 0.2s;
+}
+
+.sidebar a:hover {
+  background: rgba(124, 58, 237, 0.3);
+}
+
+/* ===== Overlay ===== */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: none;
+  z-index: 1400;
+}
+
+.overlay.active {
+  display: block;
+}
+
+/* ===== Mobile ===== */
+@media (max-width: 768px) {
+  body {
+    padding: 20px 10px;
+  }
+
+  .topbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .welcome h2 {
+    font-size: 28px;
+  }
+
+  .card span {
+    font-size: 42px;
+  }
+
+  th,
+  td {
+    padding: 12px;
+    font-size: 14px;
+  }
+}
+#reportsSection {
+  margin-top: 30px;
+}
+
+.report-card {
+  background: rgb(255, 255, 255);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 20px;
+  margin-bottom: 15px;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(8px);
+  transition: 0.2s;
+}
+
+.report-card:hover {
+  transform: translateY(-3px);
+}
+
+.report-card p {
+  margin-bottom: 8px;
+  color: var(--muted);
+}
+
+.report-card p:first-child {
+  color: #7dd3fc;
+  font-weight: bold;
+}
+
+.report-card a {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 10px 16px;
+  border-radius: 10px;
+  background: rgb(48, 17, 80);
+  color: white;
+  text-decoration: none;
+  font-weight: 700;
+  transition: 0.3s;
+}
+
+.report-card a:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(124, 58, 237, 0.4);
+}

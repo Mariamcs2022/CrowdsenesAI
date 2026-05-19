@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة التحكم - CrowdSense AI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styleorganizer.css') }}">
+</head>
+<body>
+    <div class="container">
+        <!-- ===== الهيدر مع الهامبرغر ===== -->
+        <header class="org-header">
+            <div class="header-title">
+                <h1>لوحة المنظم</h1>
+            </div>
+
+            <div class="hamburger-wrapper">
+                <button class="hamburger-btn" id="hamburgerBtn" aria-label="القائمة">☰</button>
+                <div class="dropdown-menu" id="dropdownMenu">
+                    <div class="dropdown-header">
+                        <span class="org-badge">📋 المنظم</span>
+                        <span class="user-badge">{{ user_name }}</span>
+                    </div>
+
+                    <div class="dropdown-divider"></div>
+
+                    <a href="#" class="dropdown-item" data-section="recent">🕒 اخر تنبيه مرسل</a>
+                    <a href="#" class="dropdown-item" data-section="all">🔔 مركز التنبيهات</a>
+
+                    <div class="dropdown-divider"></div>
+
+                    <a href="{{ url_for('logout') }}" class="dropdown-item logout-item">🚪 تسجيل الخروج</a>
+                </div>
+            </div>
+        </header>
+
+        <p class="welcome-text">مرحباً {{ user_name }}</p>
+
+        <!-- ===== قسم مركز التنبيهات (الكل) ===== -->
+         
+        <div id="all-section" class="content-section ">
+            <h2 class="section-title">مركز التنبيهات (الأرشيف)</h2>
+
+            <div class="alerts-grid">
+                {% for alert in alerts %}
+                <div class="alert-card {{ alert.level|lower }}">
+                    <div class="card-info">
+                        <span class="level-badge">{{ alert.level }}</span>
+                        <p class="time">{{ alert.time }}</p>
+
+                        <div class="note-box">
+                            <strong>الملاحظة:</strong>
+                            <p>{{ alert.note }}</p>
+                        </div>
+                    </div>
+
+                    <img
+                        src="{{ url_for('image', module_id=alert[0]) }}"
+                        alt="Alert Image"
+                        class="alert-thumb"
+                        onclick="openImageModal(this.src)"
+                    >
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- ===== قسم آخر تنبيه مرسل ===== -->
+        <div id="recent-section" class="content-section">
+            <h2 class="section-title">آخر تنبيه مرسل</h2>
+
+            <div class="alerts-grid">
+                {% if alerts %}
+                {% set latest = alerts[0] %}
+                <div class="alert-card {{ latest.level|lower }} latest-highlight">
+                    <div class="card-info">
+                        <span class="level-badge">{{ latest.level }}</span>
+                        <p class="time">{{ latest.time }}</p>
+
+                        <div class="note-box">
+                            <strong>الملاحظة الحالية:</strong>
+                            <p>{{ latest.note }}</p>
+                        </div>
+                    </div>
+
+                    <div class="card-img">
+                        <img
+                            src="{{ url_for('image', module_id=latest.module_id) }}"
+                            alt="Latest"
+                            class="alert-thumb"
+                            onclick="openImageModal(this.src)"
+                        >
+                    </div>
+                </div>
+                {% else %}
+                <p>لا توجد تنبيهات جديدة.</p>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- وقت آخر تحديث -->
+        <div class="last-update">
+            آخر تحديث: <span id="current-time"></span>
+        </div>
+    </div>
+
+    <!-- Modal للصورة -->
+    <div id="imageModal" class="image-modal" onclick="closeImageModal()">
+        <span class="close-btn">&times;</span>
+        <img id="modalImage" class="modal-content" alt="Preview Image">
+    </div>
+
+    <script src="{{ url_for('static', filename='js/jsorganizer.js') }}"></script>
+</body>
+</html>

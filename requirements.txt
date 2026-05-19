@@ -1,0 +1,13 @@
+flask
+ultralytics
+opencv-python-headless
+numpy
+gunicorn
+torch
+torchvision
+pillow
+reportlab
+werkzeug
+flask-wtf
+wtforms
+lwcc

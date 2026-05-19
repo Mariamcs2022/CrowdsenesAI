@@ -1,0 +1,107 @@
+body {
+  margin: 0;
+  font-family: "Cairo", "Segoe UI", Arial, sans-serif;
+  background:
+    radial-gradient(
+      circle at 20% 20%,
+      rgba(123, 63, 228, 0.08),
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at 80% 80%,
+      rgba(166, 108, 255, 0.07),
+      transparent 35%
+    );
+}
+
+.main-header {
+   background: #462379;
+
+  height: 70px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 30px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.logo-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-text {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1.2;
+  color: white;
+}
+
+.ai-text {
+  color: white;
+  font-weight: 900;
+}
+
+.logo-icon {
+  font-size: 1.8rem;
+  color: #cbc4d5;
+}
+
+.nav-tabs {
+  display: flex;
+  gap: 10px;
+}
+
+.nav-tab {
+  color: white;
+  text-decoration: none;
+  font-size: 0.9rem;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 6px 14px;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+
+.nav-tab:hover {
+  background: #fdf9ff;
+  color: #000;
+}
+
+.page-box {
+  width: 520px;
+  max-width: 92%;
+  padding: 50px;
+  border-radius: 26px;
+  background: rgb(255, 255, 255);
+  border: 5px solid rgb(255, 255, 255);
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+h2 {
+  font-size: 2rem;
+  font-weight: 900;
+  margin-bottom: 30px;
+}
+
+.button {
+  padding: 16px 35px;
+  font-size: 1.2rem;
+  font-weight: 800;
+  border-radius: 14px;
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(70deg, #6366f1);
+  color: white;
+  transition: 0.3s;
+}
+
+.button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(99, 102, 241, 0.3);
+}

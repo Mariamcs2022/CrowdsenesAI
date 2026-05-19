@@ -1,0 +1,181 @@
+:root {
+  --bg-main: #f5f3ff; /* خلفية فاتحة بنفسجية */
+  --bg-soft: rgba(255, 255, 255, 0.75);
+  --card-bg: rgba(255, 255, 255, 0.95);
+
+  --accent-1: #7b3fe4; /* بنفسجي أساسي */
+  --accent-2: #a66cff; /* بنفسجي فاتح للتدرج */
+
+  --text: #2d2d2d; /* نص غامق */
+  --muted: #7a8394;
+  --border: rgba(0, 0, 0, 0.08);
+  --shadow: 0 10px 25px rgba(123, 63, 228, 0.08);
+
+  --radius: 18px;
+}
+
+
+body {
+      background:
+    radial-gradient(
+      circle at 20% 20%,
+      rgba(123, 63, 228, 0.08),
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at 80% 80%,
+      rgba(166, 108, 255, 0.07),
+      transparent 35%
+    ),
+    var(--bg-main);
+    color: white;
+    font-family: 'Cairo', 'Segoe UI', Arial, sans-serif;
+    margin: 0;
+}
+
+.main-header {
+      background: #462379;
+
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.logo-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.fa-users-cog {
+    font-size: 1.8rem;
+    color: #ffffff;
+}
+
+.logo-text {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.2;
+    color: white;
+}
+
+.ai-text {
+    color:#ffffff;
+}
+
+.nav-tabs {
+    display: flex;
+    gap: 10px;
+}
+
+.nav-tab {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    font-size: 0.9rem;
+    background: rgba(255,255,255,0.1);
+    padding: 6px 14px;
+    border-radius: 8px;
+}
+
+.nav-tab:hover {
+    background: #ffffff;
+    color: #000;
+    font-weight: bold;
+}
+
+.status-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 70px);
+}
+
+.card {
+    width: 500px;
+    max-width: 92%;
+    padding: 50px 60px;
+    border-radius: 24px;
+
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(18px);
+
+    border: 1px solid rgba(255,255,255,0.08);
+
+    box-shadow:
+        0 25px 60px rgba(0,0,0,0.45),
+        0 0 40px rgba(99,102,241,0.08);
+
+    text-align: center;
+    animation: fadeIn 0.7s ease;
+}
+
+.card h2 {
+    font-size: 2.1rem;
+    font-weight: 900;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    margin-bottom: 35px;
+    color: #000;
+}
+
+.user-info {
+    margin-bottom: 25px;
+}
+
+.user-info p {
+    font-size: 1.1rem;
+    font-weight: 600;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: #000000;
+    margin: 10px 0;
+}
+
+.status {
+    margin-top: 30px;
+    padding: 18px;
+    border-radius: 16px;
+
+    font-size: 1.25rem;
+    font-weight: 800;
+
+    border: 2px solid;
+    transition: 0.3s;
+}
+
+.inprogress {
+    background: rgba(251,191,36,0.15);
+    color: #facc15;
+    border-color: #fbbf24;
+}
+
+.accepted {
+    background: rgba(34,197,94,0.15);
+    color: #4ade80;
+    border-color: #22c55e;
+}
+
+.rejected {
+    background: rgba(239,68,68,0.15);
+    color: #f87171;
+    border-color: #ef4444;
+}
+
+/* تأثير hover */
+.status:hover {
+    box-shadow: 0 0 20px rgba(255,255,255,0.1);
+}
+
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

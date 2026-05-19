@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>التقديم</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/styleapplication.css') }}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+<header class="main-header">
+
+    <div class="logo-group">
+                <i class="fas fa-users-cog logo-icon"></i>
+
+        <div class="logo-text">
+            خطوات  <span class="ai-text">امنة</span>
+        </div>
+    </div>
+
+    <nav class="nav-tabs">
+        <a href="{{ url_for('logout') }}" class="nav-tab">تسجيل خروج</a>
+    </nav>
+
+</header>
+<div class="page-box">
+
+<h2>صفحة التقديم</h2>
+
+<a href="{{ url_for('submit_application') }}">
+<button class="button">
+تقديم طلب
+</button>
+</a>
+
+</div>
+
+</body>
+</html>

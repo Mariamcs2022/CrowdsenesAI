@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Result</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styleresult.css') }}">
+  
+</head>
+
+<body dir="rtl">
+<div class="actions-wrapper">
+
+<h2>نتائج التحليل</h2>
+<div class="stats-bar">
+  مستوى الازدحام العام:
+  <span class="level {{ stats.overall_level|lower }}">
+    {{ stats.overall_level }}
+  </span>
+</div>
+
+<img src="{{ url_for('static', filename=out_rel) }}" class="analysis-img">
+
+<div class="stats-bar">
+  <span style="color: #7b3fe4;"><b>إجمالي الاشخاص :</b> {{ "%.2f"|format(stats.lwcc_total) }}</span>
+</div>
+
+
+  <h3>تفاصيل المناطق</h3>
+
+  <ul class="zones-grid">
+    {% for z, lvl in stats.zone_level.items() %}
+      <li class="zone-card {{ lvl|lower }}">
+        <strong style="font-size: 1.2em;">{{ z }}</strong><br>
+        <span class="spanstyle">المستوى: {{ lvl }}</span> | 
+        <span class="spanstyle">العدد: {{ stats.zone_count[z] }}</span>
+      </li>
+    {% endfor %}
+  </ul>
+
+  <h3>خيارات التقرير والتنبيه</h3>
+<div class="actions-panel">
+
+  <div class="action-tabs">
+    <button type="button" class="action-tab active" data-target="pdfBox"> تحميل التقرير 📄</button>
+    <button type="button" class="action-tab" data-target="supervisorBox"> إرسال للمشرف 👨‍💼</button>
+    <button type="button" class="action-tab" data-target="organizerBox"> إرسال للمنظم 🚨</button>
+    <button type="button" class="action-tab" data-target="bothBox"> إرسال الاثنين ✅</button>
+  </div>
+
+  <div class="action-content active" id="pdfBox">
+    <form action="{{ url_for('generate_pdf', module_id=module_id) }}" method="POST">
+      <input type="hidden" name="people_count" value="{{ stats.lwcc_total|round|int }}">
+      <input type="hidden" name="level" value="{{ stats.overall_level }}">
+
+      {% for zone, count in stats.zone_count.items() %}
+        <input type="hidden" name="{{ zone }}_count" value="{{ count }}">
+        <input type="hidden" name="{{ zone }}_level" value="{{ stats.zone_level[zone] }}">
+      {% endfor %}
+
+      <button type="submit" class="submit-btn">تحميل التقرير الآن</button>
+    </form>
+  </div>
+
+  <div class="action-content" id="supervisorBox">
+    <form action="{{ url_for('send_report_to_supervisor') }}" method="POST">
+      <input type="hidden" name="module_id" value="{{ module_id }}">
+      <input type="hidden" name="people_count" value="{{ stats.lwcc_total|round|int }}">
+      <input type="hidden" name="level" value="{{ stats.overall_level }}">
+
+      {% for zone, count in stats.zone_count.items() %}
+        <input type="hidden" name="{{ zone }}_count" value="{{ count }}">
+        <input type="hidden" name="{{ zone }}_level" value="{{ stats.zone_level[zone] }}">
+      {% endfor %}
+
+      <button type="submit" class="submit-btn">إرسال التقرير للمشرف</button>
+    </form>
+  </div>
+
+  <div class="action-content" id="organizerBox">
+    <form action="{{ url_for('security_send_alert') }}" method="POST">
+      <input type="hidden" name="module_id" value="{{ module_id }}">
+      <input type="hidden" name="level" value="{{ stats.overall_level }}">
+
+      <textarea name="note" placeholder="اكتب ملاحظاتك للمنظم هنا..." required></textarea>
+      <button type="submit" class="submit-btn">إرسال التنبيه للمنظم</button>
+    </form>
+  </div>
+
+  <div class="action-content" id="bothBox">
+    <form action="{{ url_for('send_both') }}" method="POST">
+      <input type="hidden" name="module_id" value="{{ module_id }}">
+      <input type="hidden" name="people_count" value="{{ stats.lwcc_total|round|int }}">
+      <input type="hidden" name="level" value="{{ stats.overall_level }}">
+
+      {% for zone, count in stats.zone_count.items() %}
+        <input type="hidden" name="{{ zone }}_count" value="{{ count }}">
+        <input type="hidden" name="{{ zone }}_level" value="{{ stats.zone_level[zone] }}">
+      {% endfor %}
+
+      <textarea name="note" placeholder="ملاحظة إضافية للمنظم"></textarea>
+      <button type="submit" class="submit-btn">إرسال التقرير والتنبيه</button>
+    </form>
+  </div>
+
+</div>
+
+</div>
+  <script src="{{ url_for('static', filename='js/result.js') }}"></script>
+
+</body>
+</html>

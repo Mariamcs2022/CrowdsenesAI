@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نموذج التقديم - CrowdSense AI</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/stylesubmit.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<header class="main-header">
+    <div class="logo-group">
+<i class="fas fa-users-cog logo-icon"></i>
+        <div class="logo-text">خطوات  <span class="ai-text">امنة</span></div>
+    </div>
+    <nav class="nav-tabs">
+        <a href="{{ url_for('application_page') }}" class="nav-tab"> رجوع</a>
+    </nav>
+</header> 
+<div class="container application-page">
+
+    <div class="form-header">
+        <h2>نموذج الانضمام للنظام</h2>
+        <p>يرجى تعبئة البيانات التالية بدقة للانضمام إلى فريق إدارة الزحام</p>
+    </div>
+
+    <form method="POST" class="styled-form">
+
+        {{ form.hidden_tag() }}
+
+        <div class="form-grid">
+
+            <div class="form-group">
+                <label>الاسم الكامل</label>
+                {{ form.fullname(class="form-control", readonly=True) }}
+            </div>
+
+            <div class="form-group">
+                <label>البريد الإلكتروني</label>
+                {{ form.email(class="form-control", readonly=True) }}
+            </div>
+
+            <div class="form-group">
+                <label>رقم الجوال</label>
+                {{ form.phone(class="form-control", placeholder="05xxxxxxxx") }}
+            </div>
+
+            <div class="form-group">
+                <label>العمر</label>
+                {{ form.age(class="form-control") }}
+            </div>
+
+            <div class="form-group">
+                <label>الجنس</label>
+                {{ form.gender_section(class="form-control") }}
+            </div>
+
+            <div class="form-group">
+                <label>الدور الوظيفي</label>
+                {{ form.role(class="form-control") }}
+            </div>
+
+        </div>
+
+        <div class="form-group full-width">
+            <label>اسم المنظمة / الجهة</label>
+            {{ form.organization_name(class="form-control") }}
+        </div>
+
+        <hr class="separator">
+
+        <div class="form-group">
+            <label>الخبرة في إدارة الحشود</label>
+            {{ form.crowd_experience(class="form-control", placeholder="تحدث عن خبراتك السابقة...") }}
+        </div>
+
+        <div class="form-group">
+            <label>الخبرة في تنظيم الفعاليات</label>
+            {{ form.event_experience(class="form-control") }}
+        </div>
+
+        <div class="form-group">
+            <label>الخبرة الأمنية</label>
+            {{ form.security_experience(class="form-control") }}
+        </div>
+
+        <div class="form-group">
+            <label>القدرة على التعامل مع الطوارئ</label>
+            {{ form.emergency_handling(class="form-control") }}
+        </div>
+
+        <div class="form-group checkbox-group">
+            <label>هل سبق لك التطوع؟</label>
+            {{ form.volunteer_before(class="form-check") }}
+        </div>
+
+        <div class="form-group submit-area">
+            {{ form.submit(class="btn-submit", value="إرسال الطلب الآن") }}
+        </div>
+
+    </form>
+
+</div>
+
+</body>
+</html>

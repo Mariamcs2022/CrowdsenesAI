@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Security - CrowdSense AI</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/stylesecurity.css') }}">
+</head>
+<body>
+  {% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    <div class="flash-container">
+      {% for category, message in messages %}
+        <div class="flash-message {{ category }}">
+          {{ message }}
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endwith %}  
+  <div class="container">
+    <header class="security-header">
+      <div class="header-title">
+        <h2>لوحة ضابط الأمن</h2>
+      </div>
+      <div class="hamburger-wrapper">
+        <button class="hamburger-btn" id="hamburgerBtn" aria-label="القائمة">☰</button>
+        <div class="dropdown-menu" id="dropdownMenu">
+          <div class="dropdown-header">
+            <span class="security-badge">🛡️ الأمن</span>
+            <span class="user-badge">{{ user_name }}</span>
+          </div>
+          <div class="dropdown-divider"></div>
+          <!-- عناصر القائمة - روابط وهمية تمنع التنقل وتتحكم بالعرض فقط -->
+          <a href="#" class="dropdown-item" data-section="analysis">🏠 الرئيسية (التحليل)</a>
+          <a href="#" class="dropdown-item" data-section="alerts">🚨 التنبيهات</a>
+          
+          <div class="dropdown-divider"></div>
+          <a href="{{ url_for('logout') }}" class="dropdown-item logout-item">🚪 تسجيل الخروج</a>
+        </div>
+      </div>
+    </header>
+
+    <p class="welcome-text">مرحباً {{ user_name }}</p>
+<!-- ===== قسم التحليل (الرئيسية) ===== -->
+<div id="analysis-section" class="content-section active-section">
+  <div class="card">
+    <form id="cameraForm" action="{{ url_for('security_analyze') }}" method="POST" enctype="multipart/form-data">
+      <label>ارفع صورة للتحليل:</label>
+
+      <div class="camera-section">
+        <video id="camera" autoplay playsinline></video>
+        <canvas id="snapshot" style="display:none;"></canvas>
+
+        <div class="camera-buttons">
+          <button type="button" onclick="startCamera()">فتح كاميرا اللابتوب</button>
+          <button type="button" onclick="captureImage()">التقاط صورة</button>
+        </div>
+      </div>
+
+      <div class="file-upload">
+        <input type="file" id="hiddenFileInput" name="image" accept="image/*" required>
+      </div>
+
+      <button type="submit">تحليل الصورة</button>
+    </form>
+  </div>
+</div>
+
+<!-- ===== قسم التنبيهات ===== -->
+<div id="alerts-section" class="content-section">
+  <div class="card">
+    <h3> سجل التنبيهات</h3>
+
+    <div class="table-container">
+      {% if alerts and alerts|length > 0 %}
+      <table>
+        <thead>
+          <tr>
+            <th>مستوى الزحام</th>
+            <th>الوقت</th>
+            <th>النتيجة</th>
+            <th>الاشعار</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {% for a in alerts %}
+          <tr>
+<td class="{% if a.level|upper == 'CRITICAL' %}level-critical{% elif a.level|upper == 'HIGH' %}level-high{% elif a.level|upper == 'MED' %}level-med{% else %}level-low{% endif %}">              {{ a.level }}
+            </td>
+
+            <td>{{ a.time }}</td>
+
+            <td>
+              <a href="{{ url_for('image', module_id=a.module_id) }}" target="_blank" class="module-link">
+                {{ a.module_id }}
+              </a>
+            </td>
+
+            <td>{{ a.note }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% else %}
+      <p class="no-alerts">لا يوجد تنبيهات حالياً.</p>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+  <script src="{{ url_for('static', filename='js/jssecurity.js') }}"></script>
+</body>
+</html>
