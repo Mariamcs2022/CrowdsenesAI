@@ -26,76 +26,75 @@ body {
 }
 
 body {
-  font-family: 'Cairo', sans-serif;
+  font-family: "Cairo", sans-serif;
   background: linear-gradient(180deg, #03040a 0%, var(--bg) 100%);
   color: var(--text);
   direction: rtl;
 
   display: flex;
   justify-content: center;
-  align-items: flex-start;   /* بدل center */
+  align-items: flex-start; /* بدل center */
 
-  padding: 40px 15px;        /* مسافة فوق وتحت */
+  padding: 40px 15px; /* مسافة فوق وتحت */
 }
 
-.main-header{
-  width:100%;
-  height:70px;
-  padding:0 30px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-    background: #462379;
+.main-header {
+  width: 100%;
+  height: 70px;
+  padding: 0 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #462379;
 
-  border-bottom:1px solid rgba(255,255,255,0.1);
-  position:fixed;
-  top:0;
-  right:0;
-  z-index:1000;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 1000;
 }
 
-.logo-group{
-  display:flex;
-  align-items:center;
-  gap:10px;
+.logo-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-.logo-icon{
-  font-size:1.8rem;
-   color: #cbc4d5;
-
+.logo-icon {
+  font-size: 1.8rem;
+  color: #cbc4d5;
 }
 
-.logo-text{
-  font-size:1.5rem;
-  font-weight:800;
-  color:white;
+.logo-text {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: white;
 }
 
-.ai-text{
-    color: #cbc4d5;
+.ai-text {
+  color: #cbc4d5;
 
-  font-weight:900;
+  font-weight: 900;
 }
 
-.nav-tabs{
-  display:flex;
-  gap:10px;
+.nav-tabs {
+  display: flex;
+  gap: 10px;
 }
 
-.nav-tab{
-  color:white;
-  text-decoration:none;
-  font-size:0.9rem;
-  background:rgba(255,255,255,0.1);
-  padding:6px 14px;
-  border-radius:8px;
-  transition:0.3s;
-  font-weight:700;
+.nav-tab {
+  color: white;
+  text-decoration: none;
+  font-size: 0.9rem;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 6px 14px;
+  border-radius: 8px;
+  transition: 0.3s;
+  font-weight: 700;
 }
 
-.nav-tab:hover{
-  background:#edecff;
+.nav-tab:hover {
+  background: #edecff;
   color: #000;
 }
 
@@ -103,9 +102,11 @@ body {
 .container {
   width: 100%;
   max-width: 420px;
-  background: linear-gradient(180deg,
-      rgba(255, 255, 255, 0.02),
-      rgba(255, 255, 255, 0.01));
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.02),
+    rgba(255, 255, 255, 0.01)
+  );
   border-radius: var(--radius);
   padding: 20px 20px 24px;
   box-shadow: var(--shadow);
@@ -136,8 +137,7 @@ body {
 .container header p {
   margin-top: 8px;
   font-size: 14px;
-   color: #462379;
-;
+  color: #462379;
   border-top: 1px solid rgba(255, 255, 255, 0.03);
   padding-top: 8px;
 }
@@ -151,14 +151,14 @@ body {
 }
 
 .register-container h2::after {
-  content: '';
+  content: "";
   display: block;
   width: 40px;
   height: 2px;
   margin: 8px auto 0;
   border-radius: 2px;
   background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
-  opacity: .5;
+  opacity: 0.5;
 }
 
 /* Form */
@@ -176,7 +176,7 @@ form {
 .form-group label {
   font-size: 16px;
   font-weight: 600;
-   color: #462379;
+  color: #462379;
 
   margin-bottom: 6px;
 }
@@ -186,12 +186,12 @@ form {
   height: 42px;
   padding: 8px 12px;
   border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.04);
+  border: 2px solid rgba(0, 0, 0, 0.04);
   background: rgba(255, 255, 255, 0.01);
   color: var(--text);
   font-size: 13px;
   outline: none;
-  transition: .18s ease;
+  transition: 0.18s ease;
 }
 
 .form-control::placeholder {
@@ -274,7 +274,7 @@ form {
   background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
   box-shadow: 0 12px 34px rgba(6, 182, 212, 0.08);
   margin-top: 15px;
-  transition: .18s ease;
+  transition: 0.18s ease;
 }
 
 .btn:hover {
@@ -283,7 +283,7 @@ form {
 }
 
 .btn:active {
-  transform: scale(.98);
+  transform: scale(0.98);
 }
 
 /* Focus */
@@ -296,14 +296,14 @@ a:focus {
 
 /* Bottom line */
 .container::after {
-  content: '';
+  content: "";
   display: block;
   height: 4px;
   width: 50px;
   margin: 16px auto 0;
   border-radius: 4px;
   background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
-  opacity: .12;
+  opacity: 0.12;
 }
 
 /* Login text */

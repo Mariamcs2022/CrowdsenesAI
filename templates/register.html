@@ -1,92 +1,85 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ar" dir="rtl">
-<head>
-<meta charset="UTF-8">
-<title>CrowdSense AI - إنشاء حساب</title>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<link rel="stylesheet" href="{{ url_for('static', filename='css/styleregister.css') }}"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-</head>
+    <meta charset="UTF-8" />
+    <title>CrowdSense AI - إنشاء حساب</title>
 
-<body>
-<header class="main-header">
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/styleregister.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+  </head>
 
-    <div class="logo-group">
-                <i class="fas fa-users-cog logo-icon"></i>
+  <body>
+    <header class="main-header">
+      <div class="logo-group">
+        <i class="fas fa-users-cog logo-icon"></i>
 
-        <div class="logo-text">
-            خطوات  <span class="ai-text">امنة</span>
-        </div>
-    </div>
+        <div class="logo-text">خطوات <span class="ai-text">امنة</span></div>
+      </div>
 
-    <nav class="nav-tabs">
+      <nav class="nav-tabs">
         <a href="{{ url_for('logout') }}" class="nav-tab">تسجيل خروج</a>
-    </nav>
+      </nav>
+    </header>
 
-</header>
+    <div class="container">
+      <header>
+        <h1>خطوات <span>امنة </span></h1>
+        <p>نظام إدارة الزحام بالذكاء الاصطناعي</p>
+      </header>
 
-<div class="container">
+      <div class="register-container">
+        <h2>إنشاء حساب جديد</h2>
 
-<header>
-<h1>خطوات <span>امنة </span> </h1>
-<p>نظام إدارة الزحام بالذكاء الاصطناعي</p>
-</header>
+        <form method="POST" action="{{ url_for('register') }}">
+          {{ form.hidden_tag() }}
 
-<div class="register-container">
-
-    <h2>إنشاء حساب جديد</h2>
-
-    <form method="POST" action="{{ url_for('register') }}">
-
-        {{ form.hidden_tag() }}
-
-        <div class="form-group">
+          <div class="form-group">
             <label>الاسم الكامل</label>
-            {{ form.fullname(class="form-control") }}
-
-            {% for error in form.fullname.errors %}
-                <small class="errormsg">{{ error }}</small>
+            {{ form.fullname(class="form-control") }} {% for error in
+            form.fullname.errors %}
+            <small class="errormsg">{{ error }}</small>
             {% endfor %}
-        </div>
+          </div>
 
-        <div class="form-group">
+          <div class="form-group">
             <label>البريد الإلكتروني</label>
-            {{ form.email(class="form-control") }}
-
-            {% for error in form.email.errors %}
-                <small class="errormsg">{{ error }}</small>
+            {{ form.email(class="form-control") }} {% for error in
+            form.email.errors %}
+            <small class="errormsg">{{ error }}</small>
             {% endfor %}
-        </div>
+          </div>
 
-        <div class="form-group">
+          <div class="form-group">
             <label>كلمة المرور</label>
-            {{ form.password(class="form-control") }}
-
-            {% for error in form.password.errors %}
-                <small class="errormsg">{{ error }}</small>
+            {{ form.password(class="form-control") }} {% for error in
+            form.password.errors %}
+            <small class="errormsg">{{ error }}</small>
             {% endfor %}
-        </div>
+          </div>
 
-        <div class="form-group">
+          <div class="form-group">
             <label>تأكيد كلمة المرور</label>
-            {{ form.confirm_password(class="form-control") }}
-
-            {% for error in form.confirm_password.errors %}
-                <small class="errormsg">{{ error }}</small>
+            {{ form.confirm_password(class="form-control") }} {% for error in
+            form.confirm_password.errors %}
+            <small class="errormsg">{{ error }}</small>
             {% endfor %}
-        </div>
+          </div>
 
-        <div class="form-group">
-            {{ form.submit(class="btn") }}
-        </div>
+          <div class="form-group">{{ form.submit(class="btn") }}</div>
+        </form>
 
-    </form>
-
-    <p class="m1">
-        لديك حساب ؟ <a href="{{ url_for('login') }}">ادخل الآن</a>
-    </p>
-
-</div>
-</div>
-
-</body>
+        <p class="m1">
+          لديك حساب ؟ <a href="{{ url_for('login') }}">ادخل الآن</a>
+        </p>
+      </div>
+    </div>
+  </body>
 </html>

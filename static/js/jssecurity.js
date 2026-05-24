@@ -16,7 +16,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     /* فتح وإغلاق القائمة */
     if (hamburgerBtn && dropdownMenu) {
-
         hamburgerBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             dropdownMenu.classList.toggle('active');
@@ -56,56 +55,46 @@ document.addEventListener("DOMContentLoaded", () => {
             item.classList.add('active-item');
 
             dropdownMenu.classList.remove('active');
-
         });
     });
-
 
     /* تفعيل افتراضي */
     if (sections.analysis) {
         sections.analysis.classList.add('active-section');
     }
-
 });
+
+// ==========================================
+// منطق معالجة الصور، الكاميرا، والنافذة المنبثقة
+// ==========================================
+
 let stream;
 
-async function startCamera() {
-    try {
-        stream = await navigator.mediaDevices.getUserMedia({
-            video: true
-        });
-
-        const video = document.getElementById("camera");
-        video.srcObject = stream;
-    } catch (err) {
-        alert("تعذر فتح الكاميرا");
-        console.log(err);
-    }
+// فتح نافذة الخيارات
+function openSelectionModal() {
+    document.getElementById('optionsModal').classList.add('modal-active');
 }
 
-function captureImage() {
-    const video = document.getElementById("camera");
-    const canvas = document.getElementById("snapshot");
+// إغلاق نافذة الخيارات
+function closeSelectionModal() {
+    document.getElementById('optionsModal').classList.remove('modal-active');
+}
 
-    if (!video || !video.srcObject) {
-        alert("افتحي الكاميرا أولاً");
-        return;
+// محاكاة الضغط على اختيار ملف من الجهاز
+function triggerFileInput() {
+    closeSelectionModal();
+    document.getElementById('hiddenFileInput').click();
+}
+
+// عند اختيار ملف بنجاح من الجهاز
+function handleFileSelected() {
+    const fileInput = document.getElementById('hiddenFileInput');
+    const fileStatus = document.getElementById('fileStatus');
+    const submitBtn = document.getElementById('submitAnalysisBtn');
+
+    if (fileInput.files && fileInput.files.length > 0) {
+        fileStatus.innerText = ` تم اختيار ملف: ${fileInput.files[0].name}`;
+        fileStatus.style.color = "#4caf50"; // لون أخضر للنجاح
+        submitBtn.style.display = "block";   // إظهار زر التحليل
     }
-
-    canvas.width = video.videoWidth;
-    canvas.height = video.videoHeight;
-
-    const ctx = canvas.getContext("2d");
-    ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-
-    canvas.toBlob(function(blob) {
-        const file = new File([blob], "camera_capture.jpg", { type: "image/jpeg" });
-
-        const dataTransfer = new DataTransfer();
-        dataTransfer.items.add(file);
-
-        document.getElementById("hiddenFileInput").files = dataTransfer.files;
-
-        alert("تم التقاط الصورة بنجاح");
-    }, "image/jpeg");
 }

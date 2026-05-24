@@ -285,31 +285,63 @@ tr:hover {
 .overlay.active {
   display: block;
 }
-
-/* ===== Mobile ===== */
+/* ===== Mobile فقط ===== */
 @media (max-width: 768px) {
-  body {
+
+  body{
     padding: 20px 10px;
+    overflow-x: hidden;
   }
 
-  .topbar {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  .welcome h2 {
-    font-size: 28px;
+  .topbar{
+    position: relative;
+    padding-top: 90px; /* يعطي مساحة للزر */
   }
 
-  .card span {
-    font-size: 42px;
+  .menu-btn{
+    position: absolute;
+    top: 20px;
+    left: 20px;
+
+    width: 50px;
+    height: 50px;
+
+    z-index: 2000;
+  }
+
+  .welcome h2{
+    font-size: 22px;
+    line-height: 1.4;
+  }
+
+  .welcome p{
+    font-size: 14px;
+  }
+
+  .cards{
+    grid-template-columns: 1fr;
+  }
+
+  .card{
+    padding: 25px;
+  }
+
+  .card span{
+    font-size: 36px;
   }
 
   th,
-  td {
+  td{
     padding: 12px;
     font-size: 14px;
   }
+
+  .table-box{
+    overflow-x: auto;
+  }
+
 }
+
 #reportsSection {
   margin-top: 30px;
 }

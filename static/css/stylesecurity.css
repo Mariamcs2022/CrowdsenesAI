@@ -266,6 +266,198 @@ label{
 
   font-family:inherit;
 }
+.custom-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color:rgba(31, 1, 57, 0.84);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.custom-modal.modal-active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-content {
+  background-color: #fcfbfe; /* لون كارد لوحتك الفاتح */
+  padding: 30px;
+  border-radius: 24px;
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.02);
+}
+
+.modal-content h3 {
+  color: #23233e; /* النص البنفسجي الداكن */
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 1.4rem;
+}
+
+.modal-content p {
+  color: #666677;
+  font-size: 0.95rem;
+  margin-bottom: 25px;
+}
+
+.modal-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.btn-option {
+  background-color: rgba(31, 1, 57, 0.84);
+  color: #ffffff;
+  padding: 14px 20px;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  font-family: inherit;
+  width: 100%;
+  transition: background-color 0.2s ease;
+}
+
+.btn-option:hover {
+  background-color: #1a1a30;
+}
+
+.btn-close-modal {
+  background: transparent;
+  color: #8c8ca0;
+  border: none;
+  cursor: pointer;
+  font-size: 0.95rem;
+  padding: 5px 10px;
+  font-family: inherit;
+}
+
+.btn-close-modal:hover {
+  color: #ff4757;
+}
+
+
+.main-upload-trigger {
+  text-align: center;
+  margin: 25px 0;
+}
+
+.btn-trigger {
+  background-color:rgba(31, 1, 57, 0.84);
+  color: #ffffff;
+  padding: 15px 35px;
+  border: none;
+  border-radius: 14px;
+  font-size: 1.05rem;
+  font-weight: bold;
+  cursor: pointer;
+  font-family: inherit;
+  box-shadow: 0 4px 15px rgba(35, 35, 62, 0.15);
+  transition: all 0.3s ease;
+}
+
+.btn-trigger:hover {
+  background-color: #1a1a30;
+  box-shadow: 0 6px 20px rgba(35, 35, 62, 0.25);
+}
+
+.file-status {
+  margin-top: 12px;
+  font-size: 0.95rem;
+  color: #555566;
+  font-weight: 500;
+}
+
+.btn-submit-analysis {
+  background-color: rgba(31, 1, 57, 0.84);
+  color: #ffffff;
+  font-size: 1.1rem;
+  font-weight: bold;
+  padding: 15px;
+  border: none;
+  border-radius: 16px;
+  width: 100%;
+  cursor: pointer;
+  margin-top: 20px;
+  font-family: inherit;
+  box-shadow: 0 4px 15px rgba(35, 35, 62, 0.2);
+  transition: all 0.3s ease;
+}
+
+.btn-submit-analysis:hover {
+  background-color: #1a1a30;
+}
+
+/* ---------------------------------------------------------- */
+/* حاوية الكاميرا المنبثقة                                     */
+/* ---------------------------------------------------------- */
+
+.camera-popup-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(10, 10, 15, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  direction: ltr;
+}
+
+.camera-box {
+  background-color: #1e1e2f;
+  padding: 20px;
+  border-radius: 24px;
+  max-width: 90%;
+  text-align: center;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+
+#camera {
+  width: 100%;
+  max-width: 480px;
+  border-radius: 14px;
+  transform: scaleX(-1);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.camera-controls {
+  margin-top: 15px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  direction: rtl;
+}
+
+.btn-capture {
+  background-color: #ff4757;
+  color: #ffffff;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: bold;
+  font-family: inherit;
+}
+
 
 /* buttons */
 
@@ -504,81 +696,7 @@ tr:last-child td{
   font-size: 20px;
 font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 
-
 }
-/* أزرار الكاميرا */
-.camera-buttons{
-  display:flex;
-  gap:10px;
-  margin-top:18px;
-  margin-bottom: 10px;
-  flex-wrap:wrap;
-}
-
-/* الأزرار */
-.camera-buttons button{
-
-  background:rgba(31, 1, 57, 0.84);
-  
-  color:white;
-  border:none;
-  padding:10px 18px;
-
-  border-radius:14px;
-
-  font-size:14px;
-
-  font-weight:700;
-
-  font-family:"Cairo", sans-serif;
-
-  cursor:pointer;
-
-  transition:0.25s ease;
-
-  box-shadow:
-    0 6px 18px rgba(31,1,57,0.18);
-
-  position:relative;
-
-  overflow:hidden;
-}
-
-/* لمعة */
-.camera-buttons button::before{
-
-  content:"";
-
-  position:absolute;
-
-  top:0;
-  left:-120%;
-
-  width:100%;
-  height:100%;
-
-  background:linear-gradient(
-    120deg,
-    transparent,
-    rgba(255,255,255,0.25),
-    transparent
-  );
-
-  transition:0.45s;
-}
-
-.camera-buttons button:hover::before{
-  left:120%;
-}
-
-/* هوفر */
-.camera-buttons button:hover{
-  transform:translateY(-2px);
-
-  box-shadow:
-    0 10px 22px rgba(31,1,57,0.24);
-}
-
 /* زر اختيار الملف فقط */
 .file-upload input[type="file"]::file-selector-button{
   background: rgba(31, 1, 57, 0.84);
@@ -614,8 +732,6 @@ font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans
   box-shadow:
     0 10px 22px rgba(31,1,57,0.24);
 }
-
-
 
 .hamburger-wrapper{
   position:relative;
