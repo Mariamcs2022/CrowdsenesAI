@@ -22,16 +22,17 @@ def analyze_image(
     img_path: str,
     result_dir: str,
     yolo_weights: str = DEFAULT_MODEL,
-    conf: float = 0.2,
+    conf: float = 0.50,
     imgsz: int = 1280,
     overlay_alpha: float = 0.22,
+    
 ):
     img = cv2.imread(img_path)
     if img is None:
         raise ValueError(f"Image not found or unreadable: {img_path}")
 
     h, w = img.shape[:2]
-
+    
     y_split = int(0.58 * h)
     x_split = int(0.48 * w)
     apex_x = int(0.56 * w)
