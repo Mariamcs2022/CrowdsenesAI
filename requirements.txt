@@ -12,4 +12,3 @@ flask-wtf
 wtforms
 lwcc
 email_validator
-sqlite3
