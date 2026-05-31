@@ -15,13 +15,7 @@ from reportlab.lib.pagesizes import A4
 from reportlab.lib.styles import getSampleStyleSheet
 from ai_model import analyze_image
 from db import create_alert, get_alerts_for_organiser, get_module_image_bytes, get_alerts_for_security
-import io
-from reportlab.platypus import SimpleDocTemplate, Paragraph, Image, Spacer
-from reportlab.lib.pagesizes import A4
-from reportlab.lib.styles import getSampleStyleSheet
 from fform import RegisterForm, LoginForm, ApplicationForm, SupervisorLoginForm,SupervisorRegisterForm
-
-from db import create_alert, get_alerts_for_organiser, get_module_image_bytes, get_alerts_for_security
 app = Flask(__name__)
 app.secret_key = "supersecretkey"
 
@@ -86,7 +80,6 @@ def generate_pdf(module_id):
 # الصفحة الرئيسية
 # =========================
 @app.route("/")
-@app.route("/index")
 def index():
     return render_template("index.html")
 @app.route("/register", methods=["GET", "POST"])
@@ -98,7 +91,7 @@ def register():
         conn = sqlite3.connect(ASH_DB)
         cursor = conn.cursor()
 
-        # 🔥 التحقق من الإيميل
+        #  التحقق من الإيميل
         cursor.execute(
             "SELECT 1 FROM User WHERE email=?",
             (form.email.data,)
@@ -123,7 +116,7 @@ def register():
 
         conn.commit()
 
-        # 🔥 جلب المستخدم بعد التسجيل
+        #  جلب المستخدم بعد التسجيل
         cursor.execute(
             "SELECT * FROM User WHERE email=?",
             (form.email.data,)
@@ -276,7 +269,6 @@ def supervisor_login():
 
         flash("الإيميل أو كلمة المرور غير صحيحة", "error")
 
-    # 🔥 هذا مهم جدًا لإظهار أخطاء الفورم
     return render_template("supervisor_login.html", form=form)
 
 @app.route("/submit_application", methods=["GET", "POST"])
@@ -451,7 +443,7 @@ def send_report_to_supervisor():
 
     conn.commit()
     conn.close()
-    flash("تم إرسال التقرير للمشرف بنجاح ✅", "success")
+    flash("تم إرسال التقرير للمشرف بنجاح ", "success")
 
     return redirect(url_for("security"))
 # =========================
